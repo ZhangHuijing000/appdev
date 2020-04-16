@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include "screen.h"
 #include "comm.h"
+#include "sound.h"
 
 int main(void){
 	Position cur = getscreensize();
@@ -65,4 +66,10 @@ int main(void){
 	resetcolors();
 	clearscreen();
 	printf("This line is back to default color\n");
+	FILE *fp;
+	fp = fopen("test.wav", "r");
+	WAVheader h = readwavhdr(fp);
+	fclose(fp);
+	displayWAVhdr(h);
 }
+
